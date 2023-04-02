@@ -10,11 +10,15 @@ class environment:
         # Map constants
         self.seed = seed # For random generation
         self.averageTemperature = 20
-
         # Global variables
         self.temperature = 20 # Assumes temperature is uniform across the map
         self.time = 0 # Scale of 0-10000. 0:7500 = day; 7500:10000 = night; Subject to change
         self.night = False
+        # Empty hashmap that we can iterate over when needed but want to access things O(1)
+        self.entities = {}
+        # Format: {
+        #   name: String = Entity
+        # }
 
     def tick(self):
         # This block handles the day-night cycle
@@ -24,7 +28,7 @@ class environment:
         self.updateTwilight()
 
         # Block to handle temperature change?
-        self.updateTemperature
+        self.updateTemperature()
 
     def updateTwilight(self):
         if self.time >= 7500:
