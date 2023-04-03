@@ -33,12 +33,19 @@ class Resistance:
         self.blunt_resist = blunt_resist
         self.sharp_resist = sharp_resist
 
+class State:
+    def __init__(self) -> None:
+        pass
+
+class Food:
+    def __init__(self) -> None:
+        pass
 
 # for now the only damage type is blunt and sharp
 class Entity:
     # take in all the parameters of the entity
     # previous task is some sort of state which is an enum of different things an entity could do
-    def __init__(self, damage, damage_type, locomotion: Locomotion, task: State, location: Coordinate, size, resistance: Resistance, sex=MALE, health=100, stamina=100, diet=0.5, body_temp=33, nocturnal=False):
+    def __init__(self, damage, damage_type, locomotion: Locomotion, task: 'State', location: Coordinate, size, resistance: Resistance, sex=MALE, health=100, stamina=100, diet=0.5, body_temp=33, nocturnal=False):
         self.sex = sex
         self.health = health
         self.stamina = stamina
@@ -58,10 +65,10 @@ class Entity:
 
     def reproduce(self):
         pass
-    def attack(self, enemy: Entity):
+    def attack(self, enemy: 'Entity'):
         pass
     # food should be an interface hypothetically and be able to be inherited or be a super class
-    def eat(self, object: food):
+    def eat(self, object: 'Food'):
         pass
     # runs neural network that spits out the [Direction, Speed, Task]
     # will save the task
